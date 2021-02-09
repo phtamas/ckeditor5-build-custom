@@ -1,5 +1,6 @@
 {
-  "name": "@ckeditor5/ckeditor5-build-classic",
+  "name": "@phtamas/ckeditor5-build-custom",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
     "@ckeditor/ckeditor5-autoformat": "^25.0.0",
