@@ -1,13 +1,20 @@
+'use strict';
+
 const path = require( 'path' );
+const webpack = require( 'webpack' );
+const { bundler, styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
-const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
 
 module.exports = {
+    devtool: 'source-map',
+    performance: { hints: false },
+
     entry: path.resolve( __dirname, 'src', 'ckeditor.js' ),
 
     output: {
         library: 'ClassicEditor',
+
         path: path.resolve( __dirname, 'build' ),
         filename: 'ckeditor.js',
         libraryTarget: 'umd',
@@ -20,7 +27,6 @@ module.exports = {
                 sourceMap: true,
                 terserOptions: {
                     output: {
-                        // Preserve CKEditor 5 license comments.
                         comments: /^!/
                     }
                 },
@@ -31,18 +37,22 @@ module.exports = {
 
     plugins: [
         new CKEditorWebpackPlugin( {
-            language: 'hu'
+            language: 'en'
+        } ),
+        new webpack.BannerPlugin( {
+            banner: bundler.getLicenseBanner(),
+            raw: true
         } )
     ],
 
     module: {
         rules: [
             {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                test: /\.svg$/,
                 use: [ 'raw-loader' ]
             },
             {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                test: /\.css$/,
                 use: [
                     {
                         loader: 'style-loader',
@@ -61,7 +71,7 @@ module.exports = {
                             },
                             minify: true
                         } )
-                    },
+                    }
                 ]
             }
         ]
