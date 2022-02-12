@@ -37,7 +37,7 @@ module.exports = {
 
     plugins: [
         new CKEditorWebpackPlugin( {
-            language: 'en'
+            language: 'hu'
         } ),
         new webpack.BannerPlugin( {
             banner: bundler.getLicenseBanner(),
