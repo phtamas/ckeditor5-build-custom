@@ -3,7 +3,7 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 const { bundler, styles } = require( '@ckeditor/ckeditor5-dev-utils' );
-const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
+const { CKEditorTranslationsPlugin } = require( '@ckeditor/ckeditor5-dev-translations' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
 
 module.exports = {
@@ -36,7 +36,7 @@ module.exports = {
     },
 
     plugins: [
-        new CKEditorWebpackPlugin( {
+        new CKEditorTranslationsPlugin( {
             language: 'hu'
         } ),
         new webpack.BannerPlugin( {
@@ -63,17 +63,28 @@ module.exports = {
                             }
                         }
                     },
+                    'css-loader',
                     {
                         loader: 'postcss-loader',
-                        options: styles.getPostCssConfig( {
-                            themeImporter: {
-                                themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
-                            },
-                            minify: true
-                        } )
+                        options: {
+                            postcssOptions: styles.getPostCssConfig( {
+                                themeImporter: {
+                                    themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
+                                },
+                                minify: true
+                            } )
+                        }
                     }
                 ]
+            },
+            {
+                test: /\.ts$/,
+                use: [ 'ts-loader' ]
             }
         ]
+    },
+
+    resolve: {
+        extensions: [ '.ts', '.js', '.json' ]
     }
 };
