@@ -6,6 +6,9 @@ import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import FontSize from '@ckeditor/ckeditor5-font/src/fontsize';
+import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
+import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor';
 import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
@@ -36,6 +39,9 @@ ClassicEditor.builtinPlugins = [
 	Italic,
     Underline,
     Strikethrough,
+    FontSize,
+    FontColor,
+    FontBackgroundColor,
     Code,
 	BlockQuote,
 	Heading,
@@ -67,6 +73,9 @@ ClassicEditor.defaultConfig = {
 			'italic',
             'underline',
             'strikethrough',
+            'fontSize',
+            'fontColor',
+            'fontBackgroundColor',
 			'link',
 			'bulletedList',
 			'numberedList',
@@ -83,6 +92,16 @@ ClassicEditor.defaultConfig = {
 			'redo'
 		]
 	},
+    fontColor: {
+        colorPicker: {
+            format: 'hex'
+        },
+    },
+    fontBackgroundColor: {
+        colorPicker: {
+            format: 'hex'
+        },
+    },
 	image: {
 		toolbar: [
 			'imageStyle:block',
