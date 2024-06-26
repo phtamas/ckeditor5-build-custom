@@ -24,6 +24,7 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
+import Style from '@ckeditor/ckeditor5-style/src/style';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
@@ -59,6 +60,7 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
+    Style,
 	TextTransformation,
 	SimpleUploadAdapter
 ];
@@ -68,6 +70,7 @@ ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
 			'heading',
+            'style',
 			'|',
 			'bold',
 			'italic',
